@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     public float jump;
     public bool isjump;
+    public GameManager gm;
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +26,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         isjump = false;
+
+        if (collision.gameObject.tag == "Cactus")
+        {
+            gm.GameOver();
+        }
+        
     }
 }
